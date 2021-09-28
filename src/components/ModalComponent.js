@@ -14,7 +14,7 @@ const mapa = {
   unsharpMaskKernelSize: "Unsharp Mask Kernel Size"
 }
 
-function ModalComponent({show, handleClose, title, body, inputTarget, rangeInput, funcao, uploadedImage, setUploadedImage, setImageUrl, setImagemPrevia}) {
+function ModalComponent({show, handleClose, title, body, inputTarget, rangeInput, funcao, uploadedImage, setUploadedImage, setImageUrl, setImagemPrevia, setSpinner}) {
 
   const [requiredInput, setRequiredInput] = useState(
     {
@@ -43,7 +43,7 @@ function ModalComponent({show, handleClose, title, body, inputTarget, rangeInput
           )
       }
       console.log(arr)
-      funcao(arr, uploadedImage, setUploadedImage, setImageUrl, setImagemPrevia)
+      funcao(arr, uploadedImage, setUploadedImage, setImageUrl, setImagemPrevia, setSpinner)
   }
 
   return(
@@ -92,6 +92,7 @@ function ModalComponent({show, handleClose, title, body, inputTarget, rangeInput
 
         <Modal.Footer>
           <Button variant="primary" onClick={() => {
+            setSpinner(true)
             callFunction()
             handleClose()
           }}>

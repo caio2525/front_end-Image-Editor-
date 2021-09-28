@@ -3,11 +3,29 @@ import { useState } from 'react';
 import axios from "axios";
 import ModalComponent from "./components/ModalComponent"
 import SidePanel from './components/SidePanel/SidePanel';
-
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
+import styled from 'styled-components';
 import React from 'react';
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`
+
+const FallBackContainer = styled.div`
+  position: fixed;
+  top: calc(50% - 100);
+  left: calc(50% - 100);
+`
+
 
 function App() {
 
+  const [spinner, setSpinner] = useState(false)
   const [image, setImage] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [uploadedImage, setUploadedImage] = useState('');
@@ -40,7 +58,7 @@ function App() {
     let reader = new FileReader();
     let file = event.target.files[0];
 
-    //console.log('file', typeof(file))
+    console.log('file', typeof(file))
 
     reader.onloadend = () => {
       setImage(file);
@@ -54,25 +72,39 @@ function App() {
     //event.preventDefault();
     //console.log('handle uploading-', image);
 
+    setSpinner(true);
     const fd = new FormData();
     fd.append('image', image, image.name)
 
     //console.log('type image', typeof(image))
 
-    axios.post('http://127.0.0.1:5000/upload', fd)
+    axios.post('https://us-central1-imageeditorserver.cloudfunctions.net/HelloWorld', fd)
       .then((response) => {
         console.log(response.status)
-        setUploadedImage(response.data)
-        //setPreviousImage(imageUrl)
-        setImageUrl('data:image/png;base64,'+response.data);
-        setSentinela1(false)
-        setSentinela2(true)
+        //console.log(typeof(response.status))
+        console.log(response.data)
+        if(response.status === 200)
+        {
+          setUploadedImage(response.data)
+          //setPreviousImage(imageUrl)
+          setImageUrl('data:image/png;base64,'+response.data);
+          setSentinela1(false)
+          setSentinela2(true)
+        }
+        else {
+          console.log('Deu Ruim')
+        }
+        setSpinner(false);
       })
-      .catch((error) => console.log('erro ', error))
+      .catch((error) => {
+        setSpinner(false);
+        alert("Be sure to upload an image file");
+        console.log('foi para o catch erro ', error)
+      })
   }
 
   return (
-    <div>
+    <Container>
 
       <div className="App">
 
@@ -97,7 +129,6 @@ function App() {
         </div>
 
         <div className="flex-container">
-
           <div>
             {
               sentinela1
@@ -143,6 +174,7 @@ function App() {
 
         </div>
 
+
         <ModalComponent
           show={show}
           title={modalTitle}
@@ -155,14 +187,25 @@ function App() {
           setUploadedImage={setUploadedImage}
           setImageUrl={setImageUrl}
           setImagemPrevia={setImagemPrevia}
+          setSpinner={setSpinner}
         />
 
       </div>
 
+      {
+        spinner
+        ? <FallBackContainer>
+            <Loader
+              type="TailSpin"
+              color="#00BFFF"
+              height={100}
+              width={100} //3 secs
+            />
+          </FallBackContainer>
+        : null
+      }
 
-
-
-    </div>
+    </Container>
   );
 }
 

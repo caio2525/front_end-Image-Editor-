@@ -14,8 +14,9 @@ export const SidePanelData = [
         min: "0",
         max: "255",
         step: "1",
-        funcao: (params, uploadedImage, setUploadedImage, setImageUrl, setImagemPrevia) => {
-          axios.post('http://127.0.0.1:5000/gaussianNoise',{
+        funcao: (params, uploadedImage, setUploadedImage, setImageUrl, setImagemPrevia, setSpinner) => {
+          axios.post('https://us-central1-imageeditorserver.cloudfunctions.net/gaussianNoise',{
+              modo: 'gaussianNoise',
               Sigma: params[0],
               image: uploadedImage
             }, {headers: {'content-type': 'application/json'}}
@@ -25,9 +26,10 @@ export const SidePanelData = [
               setUploadedImage(response.data)
               setImagemPrevia();
               setImageUrl('data:image/png;base64,'+response.data);
-
+              setSpinner(false)
             })
             .catch(erro => {
+              setSpinner(false)
               console.log(erro)
             })
         }
@@ -40,8 +42,9 @@ export const SidePanelData = [
         min: 0.0,
         max: 1.0,
         step: 0.1,
-        funcao: (params, uploadedImage, setUploadedImage, setImageUrl, setImagemPrevia) => {
-          axios.post('http://127.0.0.1:5000/saltPepperNoise',{
+        funcao: (params, uploadedImage, setUploadedImage, setImageUrl, setImagemPrevia, setSpinner) => {
+          axios.post('https://us-central1-imageeditorserver.cloudfunctions.net/gaussianNoise',{
+              modo: 'saltPepperNoise',
               Amount: params[0],
               image: uploadedImage
             }, {headers: {'content-type': 'application/json'}}
@@ -51,9 +54,10 @@ export const SidePanelData = [
               setUploadedImage(response.data)
               setImagemPrevia();
               setImageUrl('data:image/png;base64,'+response.data);
-
+              setSpinner(false)
             })
             .catch(erro => {
+              setSpinner(false)
               console.log(erro)
             })
         }
@@ -73,8 +77,9 @@ export const SidePanelData = [
         min: "0",
         max: "20",
         step: "1",
-        funcao: (params, uploadedImage, setUploadedImage, setImageUrl, setImagemPrevia) => {
-          axios.post('http://127.0.0.1:5000/boxFilter',{
+        funcao: (params, uploadedImage, setUploadedImage, setImageUrl, setImagemPrevia, setSpinner) => {
+          axios.post('https://us-central1-imageeditorserver.cloudfunctions.net/gaussianNoise',{
+              modo: 'boxFilter',
               KernelSize: params[0],
               image: uploadedImage
             }, {headers: {'content-type': 'application/json'}}
@@ -84,9 +89,10 @@ export const SidePanelData = [
               setUploadedImage(response.data)
               setImagemPrevia()
               setImageUrl('data:image/png;base64,'+response.data);
-
+              setSpinner(false)
             })
             .catch(erro => {
+              setSpinner(false)
               console.log(erro)
             })
         }
@@ -99,8 +105,9 @@ export const SidePanelData = [
         min: "0",
         max: "255",
         step: "1",
-        funcao: (params, uploadedImage, setUploadedImage, setImageUrl, setImagemPrevia) => {
-          axios.post('http://127.0.0.1:5000/gaussianFilter',{
+        funcao: (params, uploadedImage, setUploadedImage, setImageUrl, setImagemPrevia, setSpinner) => {
+          axios.post('https://us-central1-imageeditorserver.cloudfunctions.net/gaussianNoise',{
+              modo: 'gaussianFilter',
               KernelSize: params[0],
               Sigma: params[1],
               image: uploadedImage
@@ -111,9 +118,10 @@ export const SidePanelData = [
               setUploadedImage(response.data)
               setImagemPrevia();
               setImageUrl('data:image/png;base64,'+response.data);
-
+              setSpinner(false)
             })
             .catch(erro => {
+              setSpinner(false)
               console.log(erro)
             })
         }
@@ -126,8 +134,9 @@ export const SidePanelData = [
         min: "0",
         max: "20",
         step: "1",
-        funcao: (params, uploadedImage, setUploadedImage, setImageUrl, setImagemPrevia) => {
-          axios.post('http://127.0.0.1:5000/medianFilter',{
+        funcao: (params, uploadedImage, setUploadedImage, setImageUrl, setImagemPrevia, setSpinner) => {
+          axios.post('https://us-central1-imageeditorserver.cloudfunctions.net/gaussianNoise',{
+              modo: 'medianFilter',
               KernelSize: params[0],
               image: uploadedImage
             }, {headers: {'content-type': 'application/json'}}
@@ -137,10 +146,11 @@ export const SidePanelData = [
               setUploadedImage(response.data)
               setImagemPrevia();
               setImageUrl('data:image/png;base64,'+response.data);
-
+              setSpinner(false)
             })
             .catch(erro => {
               console.log(erro)
+              setSpinner(false)
             })
         }
       }
@@ -159,8 +169,9 @@ export const SidePanelData = [
         min: "0",
         max: "11",
         step: "1",
-        funcao: (params, uploadedImage, setUploadedImage, setImageUrl, setImagemPrevia) => {
-          axios.post('http://127.0.0.1:5000/unsharpMask',{
+        funcao: (params, uploadedImage, setUploadedImage, setImageUrl, setImagemPrevia, setSpinner) => {
+          axios.post('https://us-central1-imageeditorserver.cloudfunctions.net/gaussianNoise',{
+              modo: 'unsharpMask',
               KernelSize: params[0],
               image: uploadedImage
             }, {headers: {'content-type': 'application/json'}}
@@ -170,9 +181,10 @@ export const SidePanelData = [
               setUploadedImage(response.data)
               setImagemPrevia();
               setImageUrl('data:image/png;base64,'+response.data);
-
+              setSpinner(false)
             })
             .catch(erro => {
+              setSpinner(false)
               console.log(erro)
             })
         }
