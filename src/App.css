@@ -13,13 +13,18 @@
 }
 
 .Image{
-  padding: 20px;
-
+  text-align: center;
+  margin: 5px 15px;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.Test{
+    flex: 1;
+
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -43,16 +48,18 @@
   color: #61dafb;
 }
 
-.imgPreview{
+.ImgPreview{
   text-align: center;
   margin: 5px 15px;
-  height: 100%;
-  width: 100%;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .flex-container{
   display: flex;
+  justify-content: center;
 
 }
 

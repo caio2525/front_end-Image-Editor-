@@ -108,7 +108,7 @@ function App() {
 
       <div className="App">
 
-        <div>
+        <div >
           <form className="FormContainer">
 
             <input
@@ -152,7 +152,7 @@ function App() {
 
           </div>
 
-          <div className="imgPreview">
+          <div className="ImgPreview">
             {
               previousImage
               ? <div className="Image">
@@ -163,7 +163,7 @@ function App() {
             }
             {
               imageUrl
-              ? <div className="Image">
+              ? <div>
                   <p> Output Image </p>
                   <img src={imageUrl} alt='imageUploaded'/>
                 </div>
@@ -173,24 +173,22 @@ function App() {
            </div>
 
         </div>
-
-
-        <ModalComponent
-          show={show}
-          title={modalTitle}
-          body={modalBody}
-          handleClose={() => setShow(false)}
-          inputTarget={inputTarget}
-          rangeInput={rangeInput}
-          funcao={funcao}
-          uploadedImage={uploadedImage}
-          setUploadedImage={setUploadedImage}
-          setImageUrl={setImageUrl}
-          setImagemPrevia={setImagemPrevia}
-          setSpinner={setSpinner}
-        />
-
       </div>
+
+      <ModalComponent
+        show={show}
+        title={modalTitle}
+        body={modalBody}
+        handleClose={() => setShow(false)}
+        inputTarget={inputTarget}
+        rangeInput={rangeInput}
+        funcao={funcao}
+        uploadedImage={uploadedImage}
+        setUploadedImage={setUploadedImage}
+        setImageUrl={setImageUrl}
+        setImagemPrevia={setImagemPrevia}
+        setSpinner={setSpinner}
+      />
 
       {
         spinner
