@@ -22,6 +22,36 @@ const FallBackContainer = styled.div`
   left: calc(50% - 100);
 `
 
+const ImgPreview = styled.div`
+
+  margin: 5px 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 15px;
+  
+`
+
+
+const ImageContainer = styled.div`
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  margin: 10px;
+  padding: 5px;
+`
+
+const Image = styled.img`
+ width: 100%;
+ height: 100%;
+ object-fit: contain;
+`
+const Paragrafo = styled.p`
+  font-size: 1rem;
+`
 
 function App() {
 
@@ -152,25 +182,27 @@ function App() {
 
           </div>
 
-          <div className="ImgPreview">
+          <ImgPreview>
+
             {
               previousImage
-              ? <div className="Image">
-                  <p> Previous Image </p>
-                  <img src={previousImage} alt='previous'/>
-                </div>
-              : null
-            }
-            {
-              imageUrl
-              ? <div>
-                  <p> Output Image </p>
-                  <img src={imageUrl} alt='imageUploaded'/>
-                </div>
+              ? <ImageContainer>
+                  <Paragrafo>Previous Image</Paragrafo>
+                  <Image src={previousImage} alt='previous'/>
+                </ImageContainer>
               : null
             }
 
-           </div>
+            {
+              imageUrl
+              ? <ImageContainer>
+                  <Paragrafo> Output Image </Paragrafo>
+                  <Image src={imageUrl} alt='imageUploaded'/>
+                </ImageContainer>
+              : null
+            }
+
+           </ImgPreview>
 
         </div>
       </div>
