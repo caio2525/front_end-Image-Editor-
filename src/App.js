@@ -23,15 +23,14 @@ const FallBackContainer = styled.div`
 `
 
 const ImgPreview = styled.div`
-
-  margin: 5px 15px;
   display: flex;
+  margin: 5px 15px;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   flex: 1;
   padding: 15px;
-  
+
 `
 
 
@@ -39,7 +38,6 @@ const ImageContainer = styled.div`
   text-align: center;
   justify-content: center;
   align-items: center;
-  flex: 1;
   margin: 10px;
   padding: 5px;
 `
