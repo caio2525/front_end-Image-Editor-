@@ -8,7 +8,7 @@ This is the front end of an application that provides image processing functiona
 * [React.js](https://pt-br.reactjs.org/)
 
 ### Demo
-Você pode acessar a aplicação através do link https://front-end-image-editor-caio2525.vercel.app/
+You can access the application through the link https://front-end-image-editor-caio2525.vercel.app/
 
 ### Back End
 This project is backed by https://github.com/caio2525/Back_end-Image-Editor.git which serves the python functions for image processing
